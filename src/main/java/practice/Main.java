@@ -5,12 +5,16 @@ import practice.tableUtils.Column;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * {@code Main} class demonstrates the usage of the {@code Database}, {@code TableBuilder}, and {@code Table} classes.
+ *
+ * @author Kyrylo Kusovskyi
+ */
 public class Main {
 
     public static void main(String[] args) {
-        try{
-            Database database = Database.getInstance();
-            Connection connection = database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection()) {
+
             TableBuilder builder = new TableBuilder();
 
             Table table = builder
@@ -24,7 +28,7 @@ public class Main {
             table.delete();
 
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
     }
